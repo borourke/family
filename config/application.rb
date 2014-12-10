@@ -21,7 +21,3 @@ module Family
     # config.i18n.default_locale = :de
   end
 end
-
-Dir.glob("#{Rails.root}/app/assets/images/**/").each do |path|
-  config.assets.paths << path
-end

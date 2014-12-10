@@ -9,7 +9,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
-gem 'devise', '~> 3.4.1'
 
 # controllers
 gem 'content_for_in_controllers'
@@ -20,3 +19,6 @@ gem 'focused_controller'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'sass-rails', '~> 4.0.3'
 gem 'autoprefixer-rails'
+
+#Simpleform
+gem 'simple_form'

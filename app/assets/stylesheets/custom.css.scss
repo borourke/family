@@ -5,8 +5,13 @@
   padding-top: 50px;
 }
 
-.main-banner-image {
-  width: auto;
-  height: 250px;
-  margin: -20px 0 0 -100px;
+.family-name {
+  font-size: 30px;
+  font-style: italic;
+  text-decoration: underline;
+  font-family: cursive;
+  a {
+    color: white;
+  }
 }
+
