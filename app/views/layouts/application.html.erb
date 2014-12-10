@@ -1,14 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Family</title>
+  <title>Familyapp</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <header class="navbar navbar-fixed-top navbar-inverse">
+        <nav>
+          <ul class="nav navbar-nav pull-right">
+            <li><%= link_to "Home",   '#' %></li>
+            <li><%= link_to "Help",   '#' %></li>
+            <li><%= link_to "Log in", '#' %></li>
+          </ul>
+        </nav>
+      </header>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="non-header" id="left-menu">
+        <ul class="nav nav-pills nav-stacked">
+          <li role="presentation" class="active"><a href="#">Threads</a></li>
+          <li role="presentation"><a href="#">Calendar</a></li>
+          <li role="presentation"><a href="#">Events</a></li>
+          <li role="presentation"><a href="#">Polls</a></li>
+          <li role="presentation"><a href="#">Family</a></li>
+          <li role="presentation"><a href="#">My Profile</a></li>
+          <li role="presentation"><a href="#">Albums</a></li>
+          <li role="presentation"><a href="#">Settings</a></li>
+        </ul>
+      </div>
+  
+      <div class="non-header pull-right" id="main">
+        <%= image_tag "myfamily.png", class: "main-banner-image" %>
+        <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %> center"><%= value %></div>
+        <% end %>
+        <div class="full">
+          <%= yield %> 
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

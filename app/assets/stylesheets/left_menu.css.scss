@@ -1,0 +1,18 @@
+#left-menu {
+  background-color: #171d1f;
+  width: 15%;
+  height: 100%;
+  position: fixed;
+  border-top: 1px solid transparent;
+}
+
+.nav-pills {
+  li.active {
+    a, a:hover, a:focus {
+      background-color: #3a3f40;
+    }
+  }
+  a {
+    color: #90989c;
+  }
+}
