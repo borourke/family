@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+body, html {
+  overflow: hidden;
+  height: 100%;
+  overflow: hidden;
+}
+
+div.container-fluid.non-header {
+  position: relative;
+  height: 100%;
+}
+
+div.full {
+  position: relative;
+  height: 100%;
+}
+
+div.row {
+  position: relative;
+  height: 100%;
+}

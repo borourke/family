@@ -1,0 +1,48 @@
+<div class="threads">
+      <table class="table table-condensed table-hover">
+        <tbody>
+          <%= link_to "New Thread", class: 'btn btn-primary' %>
+          <% threads.each do |thread| %>
+            <tr>
+              <td><%= thread.title %><br><%= thread.created_at %></td>
+              <td><%= thread.users %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table> 
+    </div>
+    
+    <div class="messages" >
+      <div class="new-thread">
+        <%= simple_form_for(thread, url: create_thread_path, method: :post, ) do |f| %>
+          <%= f.input :title %>
+          <%= f.input :users, as: :check_boxes, collection: %w[1 2 3] %>
+          <%= f.input :first_message %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+
+      <div class="thread-messages">
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+        <p>messages</p>
+      </div>
+    </div>
