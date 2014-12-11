@@ -1,48 +1,36 @@
 <div class="threads">
       <table class="table table-condensed table-hover">
         <tbody>
-          <%= link_to "New Thread", class: 'btn btn-primary' %>
+          <button class='btn btn-primary' id='btn-new-thread'>New Thread<button>
           <% threads.each do |thread| %>
             <tr>
-              <td><%= thread.title %><br><%= thread.created_at %></td>
-              <td><%= thread.users %></td>
+              <td><%= thread.title %><br><%= User.where(id: thread.users).pluck(:name).join(", ") %></td>
+              <td width="250px"><%= Date.parse(thread.updated_at.to_s).strftime("%b %d, %Y") %></td>
             </tr>
           <% end %>
         </tbody>
       </table> 
     </div>
     
-    <div class="messages" >
+    <div class="messages">
       <div class="new-thread">
-        <%= simple_form_for(thread, url: create_thread_path, method: :post, ) do |f| %>
+        <%= simple_form_for(thread, url: create_thread_path, method: :post, 
+          html: { class: 'form-horizontal'}, wrapper: :horizontal_form, 
+          wrapper_mappings: {
+                            check_boxes: :horizontal_radio_and_checkboxes,
+                            radio_buttons: :horizontal_radio_and_checkboxes,
+                            file: :horizontal_file_input,
+                            boolean: :horizontal_boolean} ) do |f| %>
           <%= f.input :title %>
           <%= f.input :users, as: :check_boxes, collection: %w[1 2 3] %>
           <%= f.input :first_message %>
-          <%= f.submit %>
+          <%= f.button :submit, "Create New Thread", class: "btn btn-primary pull-right" %>
         <% end %>
       </div>
 
       <div class="thread-messages">
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
-        <p>messages</p>
+        <% threads.each do |x| %>
+          <%= x.id %>
+        <% end %>
       </div>
     </div>

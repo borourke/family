@@ -4,7 +4,8 @@
   padding-right: 1px;
   border-right: 1px solid silver;
   overflow-y: scroll;
-  height: 100%;
+  overflow-x: hidden;
+  height: 70%;
   float: left;
   width: 30%;
 
@@ -14,7 +15,7 @@
   }
 
   table {
-    margin-top: 34px;
+    margin-top: 15px;
     margin-bottom: 0px;
   }
 }
@@ -24,7 +25,22 @@
   padding-right: 1px;
   border-left: 1px solid silver;
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 100%;
   float: right;
   width: 70%;
+
+  .new-thread {
+    margin-right: 300px;
+    display: none;
+    margin-top: 20px;
+  }
+
+  input#threads_title {
+    width: 500px;
+  }
+
+  textarea#threads_first_message {
+    width: 500px;
+  }
 }
