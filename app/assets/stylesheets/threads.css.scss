@@ -1,0 +1,30 @@
+.threads {
+
+  padding-left: 1px;
+  padding-right: 1px;
+  border-right: 1px solid silver;
+  overflow-y: scroll;
+  height: 100%;
+  float: left;
+  width: 30%;
+
+  .btn {
+    width: 364px;
+    position: fixed;
+  }
+
+  table {
+    margin-top: 34px;
+    margin-bottom: 0px;
+  }
+}
+
+.messages {
+  padding-left: 1px;
+  padding-right: 1px;
+  border-left: 1px solid silver;
+  overflow-y: scroll;
+  height: 100%;
+  float: right;
+  width: 70%;
+}

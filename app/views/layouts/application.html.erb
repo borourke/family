@@ -8,29 +8,38 @@
 </head>
 <body>
 
-  
-  <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
       <header class="navbar navbar-fixed-top navbar-inverse">
         <nav>
-          <ul class="nav navbar-nav pull-left top-nav">
-            <li><%= link_to "O'Rourke", home_path, class: "family-name" %><li>
-          </ul>
-          <ul class="nav navbar-nav pull-right top-nav">
-            <li><%= link_to "Home",   '#' %></li>
-            <li><%= link_to "Help",   '#' %></li>
-            <li><%= link_to "Log in", '#' %></li>
-          </ul>
+          <% if logged_in? %>
+            <ul class="nav navbar-nav pull-left top-nav">
+              <li><%= link_to "O'Rourke", home_path, class: "family-name" %><li>
+            </ul>
+            <ul class="nav navbar-nav pull-right top-nav">
+              <li><%= link_to "Home",   home_path %></li>
+              <li><%= link_to "Help",   '#' %></li>
+              <li><%= link_to "Log Out", sign_out_path, method: "delete" %></li>
+            </ul>
+          <% else %>
+            <ul class="nav navbar-nav pull-left top-nav">
+              <li><%= link_to "FamilyApp", home_path, class: "family-name" %><li>
+            </ul>
+            <ul class="nav navbar-nav pull-right top-nav">
+              <li><%= link_to "Sign Up", sign_up_path %></li>
+              <li><%= link_to "Log In", sign_in_path %></li>
+            </ul>
+          <% end %>
         </nav>
       </header>
     </div>
   </div>
 
-  <div class="container-fluid">
+  <div class="container-fluid non-header">
     <div class="row">
       <div class="non-header" id="left-menu">
         <ul class="nav nav-pills nav-stacked">
-          <li role="presentation"><a href="#">Threads</a></li>
+          <li role="presentation"><%= link_to "Threads", threads_path %></li>
           <li role="presentation"><a href="#">Calendar</a></li>
           <li role="presentation"><a href="#">Events</a></li>
           <li role="presentation"><a href="#">Polls</a></li>
@@ -52,6 +61,10 @@
       </div>
     </div>
   </div>
+
+
+  
+  
 
 </body>
 </html>

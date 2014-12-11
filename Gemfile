@@ -10,15 +10,18 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
-# controllers
+# Controllers
 gem 'content_for_in_controllers'
 gem 'decent_exposure', '~> 2.1.0'
 gem 'focused_controller'
 
-#Twitter bootstrap
+# Twitter bootstrap
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'sass-rails', '~> 4.0.3'
 gem 'autoprefixer-rails'
 
-#Simpleform
+# Simpleform
 gem 'simple_form'
+
+# User Resources
+gem 'bcrypt',               '3.1.7'

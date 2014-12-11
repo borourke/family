@@ -11,6 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210230942) do
+ActiveRecord::Schema.define(version: 20141211024604) do
+
+  create_table "messages", force: true do |t|
+    t.integer  "thread"
+    t.text     "message"
+    t.string   "user_id"
+    t.string   "integer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "threads", force: true do |t|
+    t.string   "title"
+    t.text     "users"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "first_message"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_digest"
+  end
 
 end
