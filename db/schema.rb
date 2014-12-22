@@ -11,15 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211024604) do
+ActiveRecord::Schema.define(version: 20141222003101) do
 
   create_table "messages", force: true do |t|
-    t.integer  "thread"
     t.text     "message"
     t.string   "user_id"
-    t.string   "integer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "thread_id"
   end
 
   create_table "threads", force: true do |t|
@@ -28,6 +27,7 @@ ActiveRecord::Schema.define(version: 20141211024604) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "first_message"
+    t.integer  "threads_id"
   end
 
   create_table "users", force: true do |t|

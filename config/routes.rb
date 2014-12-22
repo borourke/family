@@ -7,8 +7,13 @@ Rails.application.routes.draw do
     get 'sign_in' => 'sessions#new', as: :sign_in
     post 'sign_in' => 'sessions#create'
     delete 'sign_out' => 'sessions#destroy', as: :sign_out
+
+    # Threads
     get 'threads' => 'threads#index', as: :threads
     post 'threads' => 'threads#create', as: :create_thread
+
+    # Messages
+    post 'messages' => 'messages#create', as: :messages
   end
 
 end

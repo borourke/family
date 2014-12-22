@@ -1,36 +1,67 @@
 <div class="threads">
-      <table class="table table-condensed table-hover">
-        <tbody>
-          <button class='btn btn-primary' id='btn-new-thread'>New Thread<button>
-          <% threads.each do |thread| %>
-            <tr>
-              <td><%= thread.title %><br><%= User.where(id: thread.users).pluck(:name).join(", ") %></td>
-              <td width="250px"><%= Date.parse(thread.updated_at.to_s).strftime("%b %d, %Y") %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table> 
-    </div>
-    
-    <div class="messages">
-      <div class="new-thread">
-        <%= simple_form_for(thread, url: create_thread_path, method: :post, 
-          html: { class: 'form-horizontal'}, wrapper: :horizontal_form, 
-          wrapper_mappings: {
-                            check_boxes: :horizontal_radio_and_checkboxes,
-                            radio_buttons: :horizontal_radio_and_checkboxes,
-                            file: :horizontal_file_input,
-                            boolean: :horizontal_boolean} ) do |f| %>
-          <%= f.input :title %>
-          <%= f.input :users, as: :check_boxes, collection: %w[1 2 3] %>
-          <%= f.input :first_message %>
-          <%= f.button :submit, "Create New Thread", class: "btn btn-primary pull-right" %>
-        <% end %>
-      </div>
+  <table class="table table-condensed table-hover">
+    <tbody>
+      <button class='btn btn-default' id='btn-new-thread'>New Thread<button>
+      <% threads.each do |thread| %>
+      <tr id="thread-<%= thread.id %>" class="thread-row">
+        <td><%= thread.title %><br><%= User.where(id: thread.users).pluck(:name).join(", ") %></td>
+        <td class="thread-updated-at"><%= Date.parse(thread.updated_at.to_s).strftime("%b %d, %Y") %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table> 
+</div>
 
-      <div class="thread-messages">
-        <% threads.each do |x| %>
-          <%= x.id %>
+<div class="messages well">
+  <div class="new-thread">
+    <legend>New Thread</legend>
+    <%= simple_form_for(thread, url: create_thread_path, method: :post,
+      html: { class: 'form-horizontal'}, wrapper: :horizontal_form,
+      wrapper_mappings: {
+        check_boxes: :horizontal_radio_and_checkboxes,
+        radio_buttons: :horizontal_radio_and_checkboxes,
+        file: :horizontal_file_input,
+        boolean: :horizontal_boolean} ) do |f| %>
+      <%= f.input :title, label: "Subject" %>
+      <%= f.input :users, label: "Family Members", :as => :check_boxes do %>
+        <%= f.collection_check_boxes :users, User.all, :id, :name do |u| %>
+          <%= u.check_box + u.label(:class => "new-thread-label") %>
         <% end %>
-      </div>
-    </div>
+      <% end %>
+      <%= f.input :first_message %>
+      <%= f.button :submit, "Create New Thread", class: "btn btn-info btn-submit-thread" %>
+      <% end %>
+  </div>
+
+  <div class="thread-messages">
+
+    <% messages.each do |message_group| %>
+    <ul class="message-table" id="message-thread-<%= message_group.first.thread_id %>">
+      <%= simple_form_for(message, remote: true, 
+        input_html: { data: { url: messages_path, type: :json } },
+        html: { class: "form-inline pull-right" } ) do |f| %>
+        <%= f.input :user_id, as: :hidden, :input_html => { value: current_user_id } %>
+        <%= f.input :thread_id, as: :hidden, :input_html => { value: message_group.first.thread_id }%>
+        <%= f.input :message, class: 'pull-right', label: false %>
+        <%= f.button :submit, "Message", class: 'btn btn-default pull-right submit-message-btn' %>
+      <% end %>
+
+        <div class="message-block" id="message-block-<%= message_group.first.thread_id %>">
+          <% message_group.each do |message| %>
+          <li class="pull-left message">
+            <span class="user-name-list"><%= message.user.name %></span>
+            <span class="message-list"><%= message.message %></span>
+          </li>
+          <li class="pull-right">
+            <span class="date-list"><%= message.created_at.strftime("%b %d, %Y") %></span>
+            <br>
+            <span class="date-list"><%= message.created_at.strftime("%I:%M:%S %P") %></span>
+          </li>
+          <hr>
+          <% end %>
+        </div>
+      
+    </ul>
+  <% end %>
+  </div>
+</div>
